@@ -5,7 +5,7 @@ project(ev)
 add_library(ev STATIC)
 target_include_directories(ev PUBLIC .)
 target_sources(ev PRIVATE ev.c event.c)
-target_compile_definitions(ev STATIC 
+target_compile_definitions(ev PRIVATE 
     EV_STANDALONE
     EV_FEATURES=0x24
     EV_USE_FLOOR=0
