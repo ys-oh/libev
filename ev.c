@@ -2711,7 +2711,7 @@ ev_version_minor (void) EV_THROW
 int inline_size ecb_cold
 enable_secure (void)
 {
-#ifdef _WIN32 || !EV_FEATURE_OS
+#if defined(_WIN32) || !EV_FEATURE_OS
   return 0;
 #else
   return getuid () != geteuid ()
