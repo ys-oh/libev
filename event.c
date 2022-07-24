@@ -231,6 +231,7 @@ int event_add (struct event *ev, struct timeval *tv)
 {
   dLOOPev;
 
+#if EV_SIGNAL_ENABLE
   if (ev->ev_events & EV_SIGNAL)
     {
       if (!ev_is_active (&ev->iosig.sig))
@@ -241,7 +242,9 @@ int event_add (struct event *ev, struct timeval *tv)
           ev->ev_flags |= EVLIST_SIGNAL;
         }
     }
-  else if (ev->ev_events & (EV_READ | EV_WRITE))
+  else
+#endif
+  if (ev->ev_events & (EV_READ | EV_WRITE))
     {
       if (!ev_is_active (&ev->iosig.io))
         {
@@ -272,10 +275,12 @@ int event_add (struct event *ev, struct timeval *tv)
 int event_del (struct event *ev)
 {
   dLOOPev;
-
+#if EV_SIGNAL_ENABLE
   if (ev->ev_events & EV_SIGNAL)
     ev_signal_stop (EV_A_ &ev->iosig.sig);
-  else if (ev->ev_events & (EV_READ | EV_WRITE))
+  else
+#endif
+  if (ev->ev_events & (EV_READ | EV_WRITE))
     ev_io_stop (EV_A_ &ev->iosig.io);
 
   if (ev_is_active (&ev->to))

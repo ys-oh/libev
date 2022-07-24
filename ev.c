@@ -2362,6 +2362,7 @@ reheap (ANHE *heap, int N)
 
 /*****************************************************************************/
 
+#if EV_SIGNAL_ENABLE || EV_ASYNC_ENABLE
 /* associate signal watchers to a signal signal */
 typedef struct
 {
@@ -2374,6 +2375,7 @@ typedef struct
 
 static ANSIG signals [EV_NSIG - 1];
 
+#endif
 /*****************************************************************************/
 
 #if EV_SIGNAL_ENABLE || EV_ASYNC_ENABLE
@@ -2709,7 +2711,7 @@ ev_version_minor (void) EV_THROW
 int inline_size ecb_cold
 enable_secure (void)
 {
-#ifdef _WIN32
+#ifdef _WIN32 || !EV_FEATURE_OS
   return 0;
 #else
   return getuid () != geteuid ()
