@@ -155,8 +155,12 @@ typedef double ev_tstamp;
 #include <string.h> /* for memmove */
 
 #ifndef EV_ATOMIC_T
+# if EV_SIGNAL_ENABLE
 # include <signal.h>
 # define EV_ATOMIC_T sig_atomic_t volatile
+# else
+# define EV_ATOMIC_T int
+# endif
 #endif
 
 #if EV_STAT_ENABLE
