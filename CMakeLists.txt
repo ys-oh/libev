@@ -24,6 +24,6 @@ zephyr_compile_definitions(
     EV_USE_EVENTFD=0
 )
 
-zephyr_library_link_libraries(posix_subsys)
+target_link_libraries(libev PUBLIC posix_subsys)
 
 endif()

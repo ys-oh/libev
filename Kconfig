@@ -2,5 +2,6 @@
 config LIBEV
   bool "enable libev"
   select POSIX_API
+  select POSIX_CLOCK
   help
     enable libev eventloop library
