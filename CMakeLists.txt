@@ -1,11 +1,9 @@
-cmake_minimum_required(VERSION 3.16)
 
-project(ev)
+zephyr_library_named(libev)
 
-add_library(ev STATIC)
-target_include_directories(ev PUBLIC .)
-target_sources(ev PRIVATE ev.c event.c)
-target_compile_definitions(ev PRIVATE 
+zephyr_include_directories(.)
+zephyr_sources(ev.c event.c)
+zephyr_compile_definitions(
     EV_STANDALONE
     EV_FEATURES=0x24
     EV_USE_FLOOR=0
