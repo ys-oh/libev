@@ -1,6 +1,7 @@
 
 zephyr_library_named(libev)
 
+if (CONFIG_LIBEV)
 zephyr_include_directories(.)
 zephyr_sources(ev.c event.c)
 zephyr_compile_definitions(
@@ -22,3 +23,4 @@ zephyr_compile_definitions(
     EV_USE_SIGNALFD=0
     EV_USE_EVENTFD=0
 )
+endif()

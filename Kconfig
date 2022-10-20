@@ -1,0 +1,6 @@
+
+config LIBEV
+  bool "enable libev"
+  select POSIX
+  help
+    enable libev eventloop library
