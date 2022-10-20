@@ -23,4 +23,7 @@ zephyr_compile_definitions(
     EV_USE_SIGNALFD=0
     EV_USE_EVENTFD=0
 )
+
+zephyr_library_link_libraries(posix_subsys)
+
 endif()
