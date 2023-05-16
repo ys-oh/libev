@@ -1,6 +1,8 @@
 
 config LIBEV
   bool "enable libev"
+  depends on NETWORKING
+  depends on NEWLIB_LIBC
   select POSIX_API
   select POSIX_CLOCK
   help
